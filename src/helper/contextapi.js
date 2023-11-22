@@ -31,6 +31,7 @@ export const ContextProvider = ({children}) => {
 
     const updateLog = (evn) => {
         dispatch({type:"UPDATE_LOGIN",payload:evn } );
+        
     }
     
     return <wContext.Provider value={

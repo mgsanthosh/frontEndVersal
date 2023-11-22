@@ -33,7 +33,7 @@ function Login() {
               setLoggedIn(true);
               updateLog('login');
 
-              alert("Logged in!");
+              alert("Welcome to Dashboard!");
               localStorage.setItem('token',"HHyvloJi0VZH32vCpOi6HkFVBHv23GEdX5r9hUm4aJKByZvOkhbBzOgcL81tbCQD")
       }else{
         setError(true);
