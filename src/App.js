@@ -6,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button } from 'reactstrap';
 import Head from './comp/Head';
 import About from './page/About';
+import ReceiptGen from './comp/ReceiptGen';
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
       <Route path='/' element={<Login/>}/>
       <Route path='/login' element={<Login/>}/>
       <Route path='/logout' element={<Logout/>}/>
+      <Route path='/receipt' element={<ReceiptGen/>}/>
       <Route path='/about' element={<About/>}/>
       <Route path='/deposit-premium' element={<DepositPremium/>}/>
     </Routes>

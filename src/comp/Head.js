@@ -16,6 +16,7 @@ const MyNavbar = () => {
   };
 
   return (
+    <>
     <Navbar  className='navbar-dark bg-dark' expand="lg">
       <div className="container-fluid">
         <NavbarToggler onClick={toggleNavbar} />
@@ -39,6 +40,11 @@ const MyNavbar = () => {
         </Collapse>
       </div>
     </Navbar>
+    <div className='text-center mt-5'>
+    <img style={{width:"10%"}} src="./img/logo.png"/>
+    </div>
+    </>
+
   );
 };
 

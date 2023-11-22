@@ -13,9 +13,11 @@ import {
   Button,
 } from 'reactstrap';
 
+
 const DepositPremium = () => {
 
   const navigate = useNavigate();
+
 
   useEffect(() =>{
     if(!localStorage.getItem("token")){
@@ -44,11 +46,21 @@ const DepositPremium = () => {
     }));
   };
 
+
   // Handler for form submission
   const handleSubmit = (e) => {
     e.preventDefault();
     // Do something with the form data, e.g., send it to a server
-    console.log('Form data submitted:', formData);
+    
+    const data = [
+      { pno: formData.policyNo, amt: formData.premiumAmount, email: formData.emailId, mobile: formData.mobNum },
+    ];
+
+    navigate('/receipt',{
+      replace:true,
+      state: {data}
+    });
+
   };
   
   return (
@@ -62,7 +74,7 @@ const DepositPremium = () => {
               <FormGroup floating>
                 <Input
                     id="exampleEmail"
-                    name="email"
+                    name="policyNo"
                     placeholder="Policy Number"
                     value={formData.policyNo}
                     onChange={handleChange}
@@ -90,7 +102,7 @@ const DepositPremium = () => {
               <FormGroup floating>
                 <Input
                     id="exampleEmail"
-                    name="email"
+                    name="mobNum"
                     placeholder="Mobile number"
                     type='number'
                     value={formData.mobNum}
@@ -106,6 +118,7 @@ const DepositPremium = () => {
             <FormGroup floating>
                 <Input
                     id="exampleEmail"
+                    name='premiumAmount'
                     value={formData.premiumAmount}
                     onChange={handleChange}
                 />
@@ -117,7 +130,7 @@ const DepositPremium = () => {
               <FormGroup floating>
                 <Input
                     id="exampleEmail"
-                    name="email"
+                    name="emailId"
                     value={formData.emailId}
                     onChange={handleChange}
                     type='email'
