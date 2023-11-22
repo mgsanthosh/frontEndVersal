@@ -41,7 +41,7 @@ const MyNavbar = () => {
       </div>
     </Navbar>
     <div className='text-center mt-5'>
-    <img style={{width:"10%"}} src="./img/logo.png"/>
+    <img style={{width:"150px"}} src="./img/logo.png"/>
     </div>
     </>
 

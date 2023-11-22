@@ -113,7 +113,7 @@ function Login() {
               <div className='d-flex mb-3'>
               <FormGroup switch>
                     <Input
-                    style={{fontSize:".8rem",marginTop:".5rem"}}
+                    style={{fontSize:"1rem",marginTop:".5rem"}}
                     type="switch"
                     // checked={state}
                     // onClick={() => {
