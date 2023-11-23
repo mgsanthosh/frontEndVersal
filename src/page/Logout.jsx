@@ -1,16 +1,6 @@
-import React, { useState,useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import {
-  Container,
-  Row,
-  Col,
-  Card,
-  CardBody,
-  Input,
-  FormGroup,
-  Label,
-  Button,
-} from 'reactstrap';
+
 import { useWContext } from '../helper/contextapi';
 
 function Logout() {

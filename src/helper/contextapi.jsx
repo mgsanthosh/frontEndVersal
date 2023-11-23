@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useReducer } from "react";
+import { createContext, useContext, useReducer } from "react";
 import reducer from "./reducer";
 const wContext = createContext();
 
@@ -6,7 +6,7 @@ const getUserState = () => {
    
     let localInfo = localStorage.getItem("token");
 
-    if(localInfo == null)
+    if(localInfo === null)
          return "0";
     else if(localInfo === ''){
         return "0";

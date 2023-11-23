@@ -3,11 +3,10 @@ import Login from './page/Login';
 import Logout from './page/Logout';
 import DepositPremium from './page/DepositPremium';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Button } from 'reactstrap';
 import Head from './comp/Head';
 import About from './page/About';
+import ApiCall from './page/ApiCall';
 import ReceiptGen from './comp/ReceiptGen';
-
 
 function App() {
   return (

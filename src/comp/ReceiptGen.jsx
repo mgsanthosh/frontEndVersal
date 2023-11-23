@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
-import { useLocation, useParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { Button } from 'reactstrap';
 
 const ReceiptGen = () => {
