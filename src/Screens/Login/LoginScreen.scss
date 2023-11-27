@@ -1,0 +1,65 @@
+.loginMainContainer {
+    display: flex;
+    width: 86%;
+    height: 72%;
+    background-color: transparent;
+    // box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    display: grid;
+    grid-template-columns: 50% 5% 45%;
+    .loginDscImage {
+        width: 100%;
+    }
+}
+.authenticationFormCard {
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 10px;
+    padding: 10px;
+
+}
+
+.authenticationHeading {
+    font-size: 30px;
+    font-weight: 600;
+    color: #1d4e9e;
+}
+
+.loginFormMainContainer {
+    width: 100%;
+    // height: 90%;
+    display: flex;
+    justify-content: start;
+    flex-direction: column;
+    align-items: center;
+    
+    .loginFormContainer {
+        width: 100%;
+       padding: 10px;
+    }
+}
+
+.loginFormImage {
+    width: 300px;
+    height: 200px;
+}
+
+.authenticationButton {
+    width: 200px;
+    padding: 10px 20px 10px 20px;
+    text-align: center;
+    background-color: #1d4e9e;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 5px;
+    cursor: pointer;
+    &:hover {
+      background-color: #fff;
+      color: #1d4e9e;  
+      border: 1px solid #1d4e9e;
+    } 
+}
+.authenticationChangeText {
+    cursor: pointer;
+    color: #1d4e9e;  
+    font-size: 18px;
+}

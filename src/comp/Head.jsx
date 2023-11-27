@@ -17,11 +17,13 @@ const MyNavbar = () => {
 
   return (
     <>
-    <Navbar  className='navbar-dark bg-dark' expand="lg">
+    <Navbar  className='navbar-dark headerMainContainer' expand="lg">
       <div className="container-fluid">
+
         <NavbarToggler onClick={toggleNavbar} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="me-auto" navbar>
+  
             <NavItem>
               <NavLink to="/" className="nav-link active" aria-current="page">Home</NavLink>
             </NavItem>
@@ -40,9 +42,9 @@ const MyNavbar = () => {
         </Collapse>
       </div>
     </Navbar>
-    <div className='text-center mt-5'>
+    {/* <div className='text-center mt-5'>
     <img style={{width:"150px"}} src="./img/logo.png"/>
-    </div>
+    </div> */}
     </>
 
   );
