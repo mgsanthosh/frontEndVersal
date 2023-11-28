@@ -1,4 +1,4 @@
-import { createContext, useContext, useReducer } from "react";
+import { createContext, useContext, useReducer, useState } from "react";
 import reducer from "./reducer";
 const wContext = createContext();
 
@@ -28,6 +28,7 @@ const initialState = {
 export const ContextProvider = ({children}) => {
     
     const [state,dispatch] = useReducer(reducer,initialState);
+    const [loader, setLoader] = useState(false);
 
     const updateLog = (evn) => {
         dispatch({type:"UPDATE_LOGIN",payload:evn } );
@@ -37,7 +38,9 @@ export const ContextProvider = ({children}) => {
     return <wContext.Provider value={
         {
             ...state,
-            updateLog
+            updateLog,
+            loader,
+            setLoader
         }
     }>{children}</wContext.Provider>;
 

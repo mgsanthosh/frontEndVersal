@@ -36,8 +36,6 @@ const MyNavbar = () => {
             <div  data-aos="zoom-in" data-aos-delay="100" onClick={() => navigate("/")}>
               <img className="headerLogo" src="./img/logo.png"></img>
             </div>
-            <div className="headerLinks"  data-aos="zoom-in" data-aos-delay="200" onClick={() => navigate("/about")}>Home</div>
-            <div className="headerLinks"  data-aos="zoom-in" data-aos-delay="200" onClick={() => navigate("/about")}>About Us</div>
             <div></div>
           </div>
       </div>

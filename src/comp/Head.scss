@@ -8,6 +8,10 @@
         width: 150px;
         height: 70px;
         margin-right: 20px;
+        @media(max-width: 600px) {
+            width: 120px;
+            height: 60px;
+        }
     }
     .headerLinks {
         color: #fff;

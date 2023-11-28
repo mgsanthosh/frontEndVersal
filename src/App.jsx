@@ -11,10 +11,17 @@ import LoginScreen from './Screens/Login/LoginScreen';
 import "./App.scss";
 import Dashboard from './Screens/dashboard/Dashboard';
 import desktopImage from "/img/Rectangle7.png";
+import Loader from './Components/Loader/Loader';
+import { useWContext } from './helper/contextapi';
 
 function App() {
+  const { updateLog, loader, setLoader } = useWContext();
+
   return (
     <div className="mainContainer">
+          { loader && <div className='loaderLayerContainer'>
+                 <Loader></Loader>
+    </div>} 
    <BrowserRouter>
      <Head/>
      <div className="routesContainer">

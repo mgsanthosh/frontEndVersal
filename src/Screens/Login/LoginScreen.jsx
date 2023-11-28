@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { useWContext } from "../../helper/contextapi"
 
 const LoginScreen = (props) => {
-    const { updateLog } = useWContext();
+    const { updateLog, loader, setLoader } = useWContext();
   
     const [username, setUsername] = useState('');
     const [isError, setError] = useState(false);
@@ -27,8 +27,16 @@ const LoginScreen = (props) => {
         console.log("Handle Login Clicked");
         setLoggedIn(true);
         updateLog('login');
-        localStorage.setItem('token',"HHyvloJi0VZH32vCpOi6HkFVBHv23GEdX5r9hUm4aJKByZvOkhbBzOgcL81tbCQD")
+        setLoader(true);
+        let timer = 0;
+        const timeOut = setTimeout(() => {
+            console.log("TIME OUT CALLED");
+            setLoader(false);
+            clearTimeout(timeOut);
+                   localStorage.setItem('token',"HHyvloJi0VZH32vCpOi6HkFVBHv23GEdX5r9hUm4aJKByZvOkhbBzOgcL81tbCQD")
         navigate("/dashboard")
+        }, [3000])
+ 
     }
 
     const handleSignUp = () => {
