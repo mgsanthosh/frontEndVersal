@@ -1,11 +1,11 @@
 .mainContainer {
     height: 100vh;
-    background-image: url("../build/img/Rectangle7.png");
+    background-image: url("/img/Rectangle7.png");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
     @media(max-width: 600px) {
-        background-image: url("../build/img/backgroundMobile.png");
+        background-image: url("/img/backgroundMobile.png");
         height: 100%;
     }
     .routesContainer {

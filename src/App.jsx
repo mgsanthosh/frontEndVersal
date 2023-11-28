@@ -10,6 +10,7 @@ import ReceiptGen from './comp/ReceiptGen';
 import LoginScreen from './Screens/Login/LoginScreen';
 import "./App.scss";
 import Dashboard from './Screens/dashboard/Dashboard';
+import desktopImage from "/img/Rectangle7.png";
 
 function App() {
   return (
