@@ -6,6 +6,7 @@
     background-size: cover;
     @media(max-width: 600px) {
         background-image: url("./img/backgroundMobile.png");
+        height: 100%;
     }
     .routesContainer {
         display: flex;
@@ -13,23 +14,41 @@
         align-items: center;
         height: 90%;
         justify-content: center;
+        @media(max-width: 600px) {
+           align-items: center;
+           height: 0%;
+        }
     }
 }
 
 .heroComponentMainContainer {
     display: flex;
     flex-direction: column;
+    @media(max-width: 600px) {
+        align-items: center;
+    }
     .heroComponentSubText {
         font-size: 52px;
     font-weight: 600;
     color: #fbc707;
+    @media(max-width: 600px) {
+        font-size: 30px;
+    }
     }
     .heroComponentBoldText {
         font-size: 62px;
         font-weight: 600;
         color: #1d4e9e;
+        @media(max-width: 600px) {
+            font-size: 35px;
+            color: #fbc707;
+
+        }
     }
     .heroComponentDescription {
         font-size: 20px;
+        @media(max-width: 600px) {
+            font-size: 16px;
+        }
     }
 }

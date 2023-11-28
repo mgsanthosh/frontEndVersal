@@ -9,6 +9,7 @@ import ApiCall from './page/ApiCall';
 import ReceiptGen from './comp/ReceiptGen';
 import LoginScreen from './Screens/Login/LoginScreen';
 import "./App.scss";
+import Dashboard from './Screens/dashboard/Dashboard';
 
 function App() {
   return (
@@ -18,6 +19,8 @@ function App() {
      <div className="routesContainer">
      <Routes>
       <Route path='/' element={<LoginScreen/>}/>
+      <Route path='/dashboard' element={<DepositPremium/>}/>
+
       <Route path='/login' element={<Login/>}/>
       <Route path='/logout' element={<Logout/>}/>
       <Route path='/receipt' element={<ReceiptGen/>}/>

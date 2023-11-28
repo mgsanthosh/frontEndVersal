@@ -1,14 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Navbar, NavbarBrand, NavbarToggler, Collapse, Nav, NavItem, Button } from 'reactstrap';
 
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { useWContext } from '../helper/contextapi';
+import "./Head.scss";
+import AOS from "aos";
+import 'aos/dist/aos.css';
 
 const MyNavbar = () => {
 
   const [isOpen, setIsOpen] = useState(false);
 
   const { login_state } = useWContext();
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    AOS.init({
+        // easing: "ease-out-cubic",
+        once: true,
+        offset: 50,
+        duration: 1000
+    });
+}, []);
 
 
   const toggleNavbar = () => {
@@ -17,34 +31,17 @@ const MyNavbar = () => {
 
   return (
     <>
-    <Navbar  className='navbar-dark headerMainContainer' expand="lg">
-      <div className="container-fluid">
-
-        <NavbarToggler onClick={toggleNavbar} />
-        <Collapse isOpen={isOpen} navbar>
-          <Nav className="me-auto" navbar>
-  
-            <NavItem>
-              <NavLink to="/" className="nav-link active" aria-current="page">Home</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink to="/deposit-premium" className="nav-link">Deposit Premium</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink to="/about" className="nav-link">About</NavLink>
-            </NavItem>
-          </Nav>
-          <NavLink to={login_state ? 'logout' : 'login'}>
-            <Button style={{height:"30px",lineHeight:"10px"}} color="warning" outline>
-              {login_state ? 'Logout' : 'Login'}
-            </Button>
-          </NavLink>
-        </Collapse>
+      <div className="headerMainContainer">
+          <div className="headerNavLinks">
+            <div  data-aos="zoom-in" data-aos-delay="100" onClick={() => navigate("/")}>
+              <img className="headerLogo" src="./img/logo.png"></img>
+            </div>
+            <div className="headerLinks"  data-aos="zoom-in" data-aos-delay="200" onClick={() => navigate("/about")}>Home</div>
+            <div className="headerLinks"  data-aos="zoom-in" data-aos-delay="200" onClick={() => navigate("/about")}>About Us</div>
+            <div></div>
+          </div>
       </div>
-    </Navbar>
-    {/* <div className='text-center mt-5'>
-    <img style={{width:"150px"}} src="./img/logo.png"/>
-    </div> */}
+
     </>
 
   );

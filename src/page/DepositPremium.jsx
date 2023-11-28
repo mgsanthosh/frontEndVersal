@@ -10,6 +10,8 @@ import {
   Form,
   Button,
 } from 'reactstrap';
+import CustomCard from '../Components/CustomCard/CustomCard';
+
 
 
 const DepositPremium = () => {
@@ -62,7 +64,8 @@ const DepositPremium = () => {
   };
   
   return (
-    <>
+    <CustomCard>
+    <div className="depositPremiumContainer">
     <Container  className='p-4 mt-5'>
       <Form onSubmit={handleSubmit}>
         <Row>
@@ -168,7 +171,9 @@ const DepositPremium = () => {
            
       </Form>
     </Container>
-    </>
+    </div>
+    
+    </CustomCard>
   )
 }
 

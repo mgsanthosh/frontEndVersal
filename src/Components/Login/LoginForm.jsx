@@ -12,7 +12,7 @@ import {
   import React, { useState,useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import "../../Screens/Login/LoginScreen.scss";
-const LoginForm = (props) => {
+const LoginForm = ({handleLogin, handleSignup, handleAuthTypeChange}) => {
 
     const [username, setUsername] = useState('');
     const [isError, setError] = useState(false);
@@ -54,8 +54,8 @@ const LoginForm = (props) => {
                 </Label>
                 </FormGroup>
     </div>
-    <div className="authenticationButton">LOGIN</div>
-    <div className="authenticationChangeText">New User? Sign Up</div>
+    <div className="authenticationButton" onClick={() => handleLogin()}>LOGIN</div>
+    <div className="authenticationChangeText" onClick={() => handleAuthTypeChange()}>New User? Sign Up</div>
 
 
         </div>
