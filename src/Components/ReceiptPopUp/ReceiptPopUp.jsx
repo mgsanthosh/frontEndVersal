@@ -12,7 +12,7 @@ const ReceiptPopUp = (props) => {
             Premium Receipt
         </div>
         <div>
-            <img src="./img/logo.png" alt="" />
+            <img className="receiptLogo" src="./img/logo.png" alt="" />
         </div>
         <Table>
             <thead className="table-header">
@@ -35,6 +35,9 @@ const ReceiptPopUp = (props) => {
         </Table>
         <div className="outlineSolidButton" onClick={() => props.downloadReceipt()}>
             Download Receipt
+        </div>
+        <div className="outlineSolidButton" onClick={() => props.close()}>
+            Close
         </div>
     </div>
   )

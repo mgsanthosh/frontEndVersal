@@ -91,3 +91,10 @@
     background-color: #1d4e93;
     color: #ffffff; 
 }
+
+.receiptLogo {
+    @media(max-width: 600px) {
+        width: 100%;
+
+    }
+}

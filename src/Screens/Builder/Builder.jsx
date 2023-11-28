@@ -10,7 +10,7 @@ import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import ReceiptPopUp from "../../Components/ReceiptPopUp/ReceiptPopUp";
 const Builder = (props) => {
-    const [building, setBuilding] = useState(false);
+    const [building, setBuilding] = useState(true);
     const location = useLocation();
     const navigate = useNavigate();
 
@@ -46,9 +46,9 @@ const Builder = (props) => {
     useEffect(() => {
         console.log("THE Builder data ", data);
         if(data) {
-        // const timeOut = setTimeout(() => {
-        //     setBuilding(false);
-        // }, 3000)
+        const timeOut = setTimeout(() => {
+            setBuilding(false);
+        }, 3000)
         } else {
             navigate('/dashboard')
         }
@@ -81,8 +81,13 @@ const Builder = (props) => {
                                         {<div className="outlineSolidButton" onClick={() => generatePDF()}>
                                             View Receipt
                                         </div>} modal
-                                        position="center center">
-                                        <ReceiptPopUp data={data} downloadReceipt={() =>generatePDF()}></ReceiptPopUp>
+                                        position="center center"> 
+                                        {
+                                          close => (
+                                            <ReceiptPopUp data={data} downloadReceipt={() =>generatePDF()} close= {() => close()}></ReceiptPopUp>
+
+                                          )  
+                                        }
                                     </Popup>
 
 
