@@ -13,6 +13,7 @@ import Dashboard from './Screens/dashboard/Dashboard';
 import desktopImage from "/img/Rectangle7.png";
 import Loader from './Components/Loader/Loader';
 import { useWContext } from './helper/contextapi';
+import Builder from './Screens/Builder/Builder';
 
 function App() {
   const { updateLog, loader, setLoader } = useWContext();
@@ -28,8 +29,9 @@ function App() {
      <Routes>
       <Route path='/' element={<LoginScreen/>}/>
       <Route path='/dashboard' element={<DepositPremium/>}/>
+      <Route path='/builder' element={<Builder />} />
+      <Route path='/login' element={<LoginScreen/>}/>
 
-      <Route path='/login' element={<Login/>}/>
       <Route path='/logout' element={<Logout/>}/>
       <Route path='/receipt' element={<ReceiptGen/>}/>
       <Route path='/about' element={<About/>}/>

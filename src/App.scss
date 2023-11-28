@@ -17,7 +17,6 @@
         justify-content: center;
         @media(max-width: 600px) {
            align-items: center;
-           height: 0%;
         }
     }
 }
@@ -63,4 +62,32 @@
     width: 100%;
     height: 100%;
     background-color: rgba(0,0,0,0.5);
+}
+
+
+
+.depositPremiumMainContainer {
+    padding: 25px;
+}
+.depositPremiumHeading {
+    text-align: center;
+    font-size: 23px;
+    color: #1d4e9e;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+.errorMessageContainer {
+    color: red;
+}
+
+
+.receiptPopUpContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+.table-header {
+    background-color: #1d4e93;
+    color: #ffffff; 
 }

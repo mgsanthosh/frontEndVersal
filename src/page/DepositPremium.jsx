@@ -13,173 +13,166 @@ import {
 import CustomCard from '../Components/CustomCard/CustomCard';
 import AOS from "aos";
 import 'aos/dist/aos.css';
+import "../App.scss";
+import { Field, Formik, useFormik } from "formik";
+import * as Yup from "yup";
 
+const initialValues = {
+  policyNo: '',
+  dob: '',
+  mobileNumber: '',
+  premiumAmount: '',
+  email: ''
+}
 
+const validation = Yup.object().shape({
+  policyNo: Yup.string().required('Policy Number is required'),
+  dob: Yup.date().required('Date of Birth is required'),
+  mobileNumber: Yup.number().required('Mobile Number is required'),
+  premiumAmount: Yup.number()
+    .required('Installment Amount is required')
+    .min(0, 'Installment Amount must be greater than or equal to 0'),
+  email: Yup.string().email("Please Enter a valid Email").required("Please Enter the Email"),
+});
 const DepositPremium = () => {
-
   const navigate = useNavigate();
 
 
-  useEffect(() =>{
-    if(!localStorage.getItem("token")){
+  const formik = useFormik({
+    initialValues: initialValues,
+    onSubmit: (values) => {
+      console.log("The Formik Forms Values are ", values);
+      const data = [values]
+      navigate('/builder', {
+        replace: true,
+        state: {data}
+      });
+    },
+    validationSchema: validation
+  })
+
+
+
+  useEffect(() => {
+    if (!localStorage.getItem("token")) {
       navigate("/login");
     }
     AOS.init({
       once: true,
       offset: 50,
       duration: 1000
-  });
-  },[]);
-
-
-
-  const [formData, setFormData] = useState({
-      policyNo: '',
-      premiumAmount: '',
-      dob: '',
-      emailId: '',
-      mobNum:'',
-      confirmCheck:''
-  });
-
-  // Handler for form field changes
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
-
-
-  // Handler for form submission
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Do something with the form data, e.g., send it to a server
-    
-    const data = [
-      { pno: formData.policyNo, amt: formData.premiumAmount, email: formData.emailId, mobile: formData.mobNum },
-    ];
-
-    navigate('/receipt',{
-      replace:true,
-      state: {data}
     });
+  }, []);
 
-  };
-  
+
   return (
-    <CustomCard>
-    <div className="depositPremiumContainer"  data-aos="zoom-out">
-    <Container  className='p-4 mt-5'>
-      <Form onSubmit={handleSubmit}>
-        <Row>
-        <span className='mb-3' style={{color:"red"}}>* All fields are mandatory</span>
-        
-            <Col md={6}>
-              <FormGroup floating>
-                <Input
-                    id="exampleEmail"
-                    name="policyNo"
-                    placeholder="Policy Number"
-                    value={formData.policyNo}
-                    onChange={handleChange}
-                />
-                <Label for="exampleEmail">
-                    Policy Number
-                </Label>
-              </FormGroup>
-              {' '}
+    <div className='depositPremiumMainContainer'>
+      <CustomCard>
+        <div className="depositPremiumContainer" data-aos="zoom-out">
+          <div className='depositPremiumHeading'>Premium Collection Form</div>
 
-              <FormGroup floating>
-                <Input
-                    id="exampleEmail"
-                    type='date'
-                    name="dob"
-                    placeholder="Date of Birth"
-                    value={formData.dob}
-                    onChange={handleChange}
-                />
-                <Label for="exampleEmail">
-                    Date of Birth
-                </Label>
-              </FormGroup>
+          <Container>
+            <Form onSubmit={formik.handleSubmit}>
+              <Row>
+                <span className='mb-3' style={{ color: "red" }}>* All fields are mandatory</span>
 
-              <FormGroup floating>
-                <Input
-                    id="exampleEmail"
-                    name="mobNum"
-                    placeholder="Mobile number"
-                    type='number'
-                    value={formData.mobNum}
-                    onChange={handleChange}
-                />
-                <Label for="exampleEmail">
-                   Mobile number
-                </Label>
-              </FormGroup>
+                <Col md={6}>
+                  <FormGroup floating>
+                    <Input
+                      onBlur={formik.handleBlur} onChange={formik.handleChange("policyNo")} value={formik.values.policyNo}
+                      id="policyNo"
+                      name="policyNo"
+                      placeholder="Policy Number"
+                    />
+                    <Label for="policyNo">
+                      Policy Number
+                    </Label>
+                    {formik.errors.policyNo && <div className="errorMessageContainer">{formik.errors.policyNo}</div>}
+                  </FormGroup>
 
-            </Col>
-            <Col md={6}>
-            <FormGroup floating>
-                <Input
-                    id="exampleEmail"
-                    name='premiumAmount'
-                    value={formData.premiumAmount}
-                    onChange={handleChange}
-                />
-                <Label for="exampleEmail">
-                    Instalment Premium (₹)
-                </Label>
-              </FormGroup>
+                  <FormGroup floating>
+                    <Input
+                    onBlur={formik.handleBlur} onChange={formik.handleChange("dob")} value={formik.values.dob}
+                      id="dob"
+                      type='date'
+                      name="dob"
+                      placeholder="Date of Birth"
+                    />
+                    <Label for="dob">
+                      Date of Birth
+                    </Label>
+                    {formik.errors.dob && <div className="errorMessageContainer">{formik.errors.dob}</div>}
 
-              <FormGroup floating>
-                <Input
-                    id="exampleEmail"
-                    name="emailId"
-                    value={formData.emailId}
-                    onChange={handleChange}
-                    type='email'
-                />
-                <Label for="exampleEmail">
-                    Email Id
-                </Label>
-              </FormGroup>
-            </Col>
-            <Col md={6}>
+                  </FormGroup>
 
-            </Col>
-          </Row>
-        
-          <FormGroup check>
-            <Input
-              id="exampleCheck"
-              name="check"
-              type="checkbox"
-            />
-            <Label
-              check
-              style={{fontSize:".8rem",fontWeight:"600"}}
-              for="exampleCheck"
-            >
-                  I confirm that the mobile number mentioned above registred with my lic policy,<br/> I hereby authorize lic to use the mobile number for any conversation.
-                </Label>
-              </FormGroup>
-              
-            <Row>
-              <Col md="12" className=' text-center'>
+                  <FormGroup floating>
+                    <Input
+                    onBlur={formik.handleBlur} onChange={formik.handleChange("mobileNumber")} value={formik.values.mobileNumber}
+                      id="mobileNumber"
+                      name="mobileNumber"
+                      placeholder="Mobile number"
+                      type='number'
+                    />
+                    <Label for="mobileNumber">
+                      Mobile number
+                    </Label>
+                    {formik.errors.mobileNumber && <div className="errorMessageContainer">{formik.errors.mobileNumber}</div>}
+
+                  </FormGroup>
+
+                </Col>
+                <Col md={6}>
+                  <FormGroup floating>
+                    <Input
+                      onBlur={formik.handleBlur} onChange={formik.handleChange("premiumAmount")} value={formik.values.premiumAmount}
+                      id="premiumAmount"
+                      name='premiumAmount'
+                      type='number'
+                    />
+                    <Label for="premiumAmount">
+                      Instalment Premium (₹)
+                    </Label>
+                    {formik.errors.premiumAmount && <div className="errorMessageContainer">{formik.errors.premiumAmount}</div>}
+
+                  </FormGroup>
+
+                  <FormGroup floating>
+                    <Input
+                      onBlur={formik.handleBlur} onChange={formik.handleChange("email")} value={formik.values.email}
+                      id="email"
+                      name="email"
+                      type='email'
+                    />
+                    <Label for="email">
+                      Email Id
+                    </Label>
+                    {formik.errors.email && <div className="errorMessageContainer">{formik.errors.email}</div>}
+
+                  </FormGroup>
+                </Col>
+                <Col md={6}>
+
+                </Col>
+              </Row>
+
+  
+
+              <Row>
+                <Col className=' text-center'>
                   <Button type='submit' color='dark' className='mt-4'>
-                       Proceed
-                 </Button>
-              </Col>
-            </Row>  
-           
-      </Form>
-    </Container>
+                    Proceed
+                  </Button>
+                </Col>
+              </Row>
+
+            </Form>
+          </Container>
+        </div>
+      
+
+      </CustomCard>
     </div>
-    
-    </CustomCard>
+
   )
 }
 

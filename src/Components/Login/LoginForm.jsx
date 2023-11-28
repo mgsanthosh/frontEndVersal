@@ -15,10 +15,24 @@ import "../../Screens/Login/LoginScreen.scss";
 const LoginForm = ({handleLogin, handleSignup, handleAuthTypeChange}) => {
 
     const [username, setUsername] = useState('');
-    const [isError, setError] = useState(false);
     const [password, setPassword] = useState('');
     const [loggedIn, setLoggedIn] = useState(false);
+    const [error, setError] = useState('');
     const navigate = useNavigate();
+
+    const onLoginClick = () => {
+      if(username === '' || password === '') {
+        setError("Please check the fields")
+      } else {
+        handleLogin();
+      }
+      console.log(username, password);
+    }
+
+    useEffect(() => {
+        setError('');
+    }, [username, password])
+
   return (
     <div className="loginFormMainContainer">
                 <div className="authenticationHeading">Login</div>
@@ -54,7 +68,8 @@ const LoginForm = ({handleLogin, handleSignup, handleAuthTypeChange}) => {
                 </Label>
                 </FormGroup>
     </div>
-    <div className="authenticationButton" onClick={() => handleLogin()}>LOGIN</div>
+    <div className='errorText'>{error}</div>
+    <div className="authenticationButton" onClick={() => onLoginClick()}>LOGIN</div>
     <div className="authenticationChangeText" onClick={() => handleAuthTypeChange()}>New User? Sign Up</div>
 
 

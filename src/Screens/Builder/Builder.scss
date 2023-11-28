@@ -1,0 +1,75 @@
+.builderRootContainer {
+    display: flex;
+    height: 90vh;
+}
+
+.builderMainContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+.builderText {
+    font-size: 25px;
+    font-weight: 600;
+    color: #1d4e9e;
+}
+
+.builderImage {
+    width: 480px;
+    height: 300px;
+    @media(max-width: 600px) {
+        width: 200px;
+        height: 160px;
+    }
+}
+
+
+.buttonContainer {
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    gap: 10px;
+}
+
+.builderSolidButton {
+    width: 200px;
+    padding: 10px 20px 10px 20px;
+    text-align: center;
+    background-color: #1d4e9e;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    &:hover {
+      background-color: #fff;
+      color: #1d4e9e;  
+      border: 1px solid #1d4e9e;
+    } 
+}
+
+.outlineSolidButton {
+    width: 200px;
+    padding: 10px 20px 10px 20px;
+    text-align: center;
+    color: #1d4e9e;
+    font-weight: 600;
+    border-radius: 5px;
+    border: 1px solid #1d4e9e;
+    cursor: pointer;
+    &:hover {
+      background-color: #1d4e9e;
+      color: #fff;  
+      border: 1px solid #1d4e9e;
+    } 
+}
+
+.popup-content {
+    width: 70% !important;
+    border-radius: 10px;
+    padding: 5px;
+    height: 80%;
+}
