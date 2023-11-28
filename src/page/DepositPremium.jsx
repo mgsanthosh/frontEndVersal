@@ -11,7 +11,8 @@ import {
   Button,
 } from 'reactstrap';
 import CustomCard from '../Components/CustomCard/CustomCard';
-
+import AOS from "aos";
+import 'aos/dist/aos.css';
 
 
 const DepositPremium = () => {
@@ -23,6 +24,11 @@ const DepositPremium = () => {
     if(!localStorage.getItem("token")){
       navigate("/login");
     }
+    AOS.init({
+      once: true,
+      offset: 50,
+      duration: 1000
+  });
   },[]);
 
 
@@ -65,7 +71,7 @@ const DepositPremium = () => {
   
   return (
     <CustomCard>
-    <div className="depositPremiumContainer">
+    <div className="depositPremiumContainer"  data-aos="zoom-out">
     <Container  className='p-4 mt-5'>
       <Form onSubmit={handleSubmit}>
         <Row>

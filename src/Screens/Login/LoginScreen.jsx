@@ -1,12 +1,20 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import "./LoginScreen.scss";
 import LoginForm from "../../Components/Login/LoginForm";
 import HeroComponent from "../../Components/Login/HeroComponent";
 import AOS from "aos";
 import 'aos/dist/aos.css';
 import { useNavigate } from 'react-router-dom';
+import { useWContext } from "../../helper/contextapi"
 
 const LoginScreen = (props) => {
+    const { updateLog } = useWContext();
+  
+    const [username, setUsername] = useState('');
+    const [isError, setError] = useState(false);
+    const [password, setPassword] = useState('');
+    const [loggedIn, setLoggedIn] = useState(false);
+    const navigate = useNavigate();
     useEffect(() => {
         AOS.init({
             once: true,
@@ -14,10 +22,12 @@ const LoginScreen = (props) => {
             duration: 1000
         });
     }, []);
-    const navigate = useNavigate();
 
     const handleLogin = () => {
         console.log("Handle Login Clicked");
+        setLoggedIn(true);
+        updateLog('login');
+        localStorage.setItem('token',"HHyvloJi0VZH32vCpOi6HkFVBHv23GEdX5r9hUm4aJKByZvOkhbBzOgcL81tbCQD")
         navigate("/dashboard")
     }
 
