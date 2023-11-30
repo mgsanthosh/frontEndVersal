@@ -6,6 +6,7 @@ import AOS from "aos";
 import 'aos/dist/aos.css';
 import { useNavigate } from 'react-router-dom';
 import { useWContext } from "../../helper/contextapi"
+import axiosInstance from '../../Utils/httpCalls';
 
 const LoginScreen = (props) => {
     const { updateLog, loader, setLoader } = useWContext();
@@ -23,19 +24,26 @@ const LoginScreen = (props) => {
         });
     }, []);
 
-    const handleLogin = () => {
-        console.log("Handle Login Clicked");
+    const handleLogin = (httpData) => {
+        console.log("Handle Login Clicked", httpData);
         setLoggedIn(true);
         updateLog('login');
         setLoader(true);
         let timer = 0;
-        const timeOut = setTimeout(() => {
-            console.log("TIME OUT CALLED");
-            setLoader(false);
-            clearTimeout(timeOut);
-                   localStorage.setItem('token',"HHyvloJi0VZH32vCpOi6HkFVBHv23GEdX5r9hUm4aJKByZvOkhbBzOgcL81tbCQD")
-        navigate("/dashboard")
-        }, [3000])
+        // const timeOut = setTimeout(() => {
+        //     console.log("TIME OUT CALLED");
+        //     setLoader(false);
+        //     clearTimeout(timeOut);
+        //            localStorage.setItem('token',"HHyvloJi0VZH32vCpOi6HkFVBHv23GEdX5r9hUm4aJKByZvOkhbBzOgcL81tbCQD")
+        // navigate("/dashboard")
+        // }, [3000])
+
+        axiosInstance.post("users/token", httpData).then((response) => {
+            console.log("The Token Response ", response);
+            localStorage.setItem('token', response['data']);
+        }).catch((err) => {
+
+        })
  
     }
 

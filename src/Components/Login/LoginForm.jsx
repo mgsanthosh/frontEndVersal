@@ -24,9 +24,15 @@ const LoginForm = ({handleLogin, handleSignup, handleAuthTypeChange}) => {
       if(username === '' || password === '') {
         setError("Please check the fields")
       } else {
-        handleLogin();
+       const httpData = {
+          "email": username,
+          "password": password
+       }
+      
+        handleLogin(httpData);
+        console.log(httpData);
+
       }
-      console.log(username, password);
     }
 
     useEffect(() => {
