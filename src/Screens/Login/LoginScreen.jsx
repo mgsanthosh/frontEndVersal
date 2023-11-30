@@ -26,10 +26,9 @@ const LoginScreen = (props) => {
 
     const handleLogin = (httpData) => {
         console.log("Handle Login Clicked", httpData);
-        setLoggedIn(true);
-        updateLog('login');
+
         setLoader(true);
-        let timer = 0;
+
         // const timeOut = setTimeout(() => {
         //     console.log("TIME OUT CALLED");
         //     setLoader(false);
@@ -40,9 +39,13 @@ const LoginScreen = (props) => {
 
         axiosInstance.post("users/token", httpData).then((response) => {
             console.log("The Token Response ", response);
-            localStorage.setItem('token', response['data']);
+            localStorage.setItem('userData', JSON.stringify(response['data']));
+            navigate("/dashboard");
         }).catch((err) => {
-
+            console.log("Bad Credentials");
+            alert("Bad Credentials")
+        }).finally(() => {
+            setLoader(false);
         })
  
     }
@@ -55,6 +58,13 @@ const LoginScreen = (props) => {
     const handleAuthTypeChange = () => {
         console.log("Auth Type Changes")
     }
+
+    useEffect(() => {
+        const userData = JSON.parse(localStorage.getItem("userData"));
+        if(userData) {
+            navigate("/dashboard")
+        }
+    }, [])
 
   return (
     <div className="loginMainContainer">

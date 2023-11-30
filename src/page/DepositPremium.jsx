@@ -16,6 +16,8 @@ import 'aos/dist/aos.css';
 import "../App.scss";
 import { Field, Formik, useFormik } from "formik";
 import * as Yup from "yup";
+import axiosInstance from '../Utils/httpCalls';
+import { useWContext } from '../helper/contextapi';
 
 const initialValues = {
   policyNo: '',
@@ -36,32 +38,58 @@ const validation = Yup.object().shape({
 });
 const DepositPremium = () => {
   const navigate = useNavigate();
+  const [userData, setUserData] = useState(null);
+  const [errorText, setErrorText] = useState("");
+  const { updateLog, loader, setLoader } = useWContext();
 
+  const handlePremiumSubmit = (formValues) => {
+    setLoader(true);
+    const httpData = {
+      "policyNo": formValues['policyNo'],
+      "userId": userData["usreId"],
+      "policyDate": formValues['dob'],
+      "policyAmount": formValues['premiumAmount'],
+      "policyStatus":1
+  }
+    axiosInstance.post("policy/payPolicy", httpData).then((resp) => {
+      console.log("The Response ",resp);
+      const data = [formValues]
+      navigate('/builder', {
+        replace: true,
+        state: {data}
+      });
+    }).catch((err) => {
+      setErrorText("Error in Paying Premium! Please Try Again Later");
+    }).finally(() => {
+      setLoader(false);
+    })
+
+  }
 
   const formik = useFormik({
     initialValues: initialValues,
     onSubmit: (values) => {
       console.log("The Formik Forms Values are ", values);
-      const data = [values]
-      navigate('/builder', {
-        replace: true,
-        state: {data}
-      });
+      handlePremiumSubmit(values);
     },
     validationSchema: validation
-  })
+  });
 
+  
 
 
   useEffect(() => {
-    if (!localStorage.getItem("token")) {
-      navigate("/login");
-    }
     AOS.init({
       once: true,
       offset: 50,
       duration: 1000
     });
+    const userData = JSON.parse(localStorage.getItem("userData"));
+    setUserData(userData);
+    if(!userData) {
+      navigate("/", {replace: true});
+    }
+
   }, []);
 
 
@@ -168,7 +196,9 @@ const DepositPremium = () => {
             </Form>
           </Container>
         </div>
-      
+        <div className='errorText'>
+          {errorText}
+        </div>
 
       </CustomCard>
     </div>

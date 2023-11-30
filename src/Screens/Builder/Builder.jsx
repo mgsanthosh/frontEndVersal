@@ -10,11 +10,11 @@ import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import ReceiptPopUp from "../../Components/ReceiptPopUp/ReceiptPopUp";
 const Builder = (props) => {
+    const [data, setBuilderData] = useState(null);
     const [building, setBuilding] = useState(true);
     const location = useLocation();
     const navigate = useNavigate();
 
-    const data = location.state.data;
 
     const generatePDF = () => {
         // Initialize jsPDF
@@ -44,8 +44,9 @@ const Builder = (props) => {
 
 
     useEffect(() => {
-        console.log("THE Builder data ", data);
-        if(data) {
+        const formData = location.state;
+        if(formData) {
+            setBuilderData(formData.data);
         const timeOut = setTimeout(() => {
             setBuilding(false);
         }, 3000)
@@ -57,7 +58,7 @@ const Builder = (props) => {
 
     return (
         <div className="builderRootContainer">
-            {data && <div className="builderMainContainer">
+            {data !== null && <div className="builderMainContainer">
                 <CustomCard>
                     {building ? <div className="builderMainContainer">
                         <img className="builderImage" src="./img/builder.gif" alt="" />
