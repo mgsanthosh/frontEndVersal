@@ -7,6 +7,7 @@ const axiosInstance = axios.create({
 axiosInstance.interceptors.request.use(
     (config) => {
         try {
+            console.log("Hello");
             const userData = JSON.parse(localStorage.getItem('userData'));
             const token = userData["token"];
             console.log("The Token is ", token);
